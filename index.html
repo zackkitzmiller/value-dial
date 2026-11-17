@@ -1,0 +1,172 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Value Dial for Stream Deck +</title>
+    <meta
+      name="description"
+      content="Turn a Stream Deck + dial to change the number in any text field, in any app."
+    />
+    <link rel="icon" href="app-icon.png" />
+    <style>
+      body {
+        margin: 0;
+        background: #0e1017;
+        color: #e6e9f2;
+        font:
+          17px/1.6 system-ui,
+          sans-serif;
+      }
+      main {
+        max-width: 760px;
+        margin: 0 auto;
+        padding: 32px 20px 64px;
+      }
+      header {
+        display: flex;
+        align-items: center;
+        gap: 16px;
+      }
+      header img {
+        width: 72px;
+        border-radius: 16px;
+      }
+      h1 {
+        margin: 0;
+        font-size: 40px;
+      }
+      h2 {
+        margin-top: 40px;
+        color: #ff8a2a;
+      }
+      img.shot {
+        width: 100%;
+        border-radius: 12px;
+        margin: 16px 0;
+      }
+      code {
+        background: #1b1f2c;
+        padding: 1px 6px;
+        border-radius: 4px;
+      }
+      table {
+        border-collapse: collapse;
+      }
+      td {
+        padding: 6px 16px 6px 0;
+        vertical-align: top;
+      }
+      td:first-child {
+        font-weight: 700;
+        white-space: nowrap;
+      }
+      a {
+        color: #7fb3ff;
+      }
+    </style>
+  </head>
+  <body>
+    <main>
+      <header>
+        <img src="app-icon.png" alt="" />
+        <h1>Value Dial</h1>
+      </header>
+      <p>
+        A Stream Deck + dial that changes the number in whatever text field has
+        focus, in any app: a CAD extrude distance, a brush size, a track gain, a
+        value in any form.
+      </p>
+      <img
+        class="shot"
+        src="thumbnail.png"
+        alt="Value Dial icon and a field going from 25 mm to 26 mm"
+      />
+
+      <h2>Setup</h2>
+      <ol>
+        <li>Install Value Dial from the Elgato Marketplace.</li>
+        <li>Drag the <b>Value Dial</b> action onto a Stream Deck + dial.</li>
+        <li>
+          <b>macOS:</b> allow Stream Deck under System Settings → Privacy &amp;
+          Security → Accessibility, then restart Stream Deck.
+        </li>
+        <li>
+          <b>Windows:</b> if your app runs as administrator, run Stream Deck as
+          administrator too, or Windows blocks the keystrokes.
+        </li>
+        <li>Click into a number field and turn the dial.</li>
+      </ol>
+
+      <h2>Controls</h2>
+      <table>
+        <tr>
+          <td>Turn</td>
+          <td>Plus or minus one step per click</td>
+        </tr>
+        <tr>
+          <td>Push</td>
+          <td>Next step size</td>
+        </tr>
+        <tr>
+          <td>Push + turn</td>
+          <td>Ten steps per click</td>
+        </tr>
+        <tr>
+          <td>Tap the touch strip</td>
+          <td>Re-read the field</td>
+        </tr>
+      </table>
+      <img
+        class="shot"
+        src="gallery-2.png"
+        alt="Controls and the touch strip readout"
+      />
+
+      <h2>Settings</h2>
+      <p>
+        <b>Step sizes:</b> comma-separated positive numbers. Default
+        <code>1, 10, 0.1</code>; the first is active on a new dial. Use
+        <code>.</code> as the decimal point.
+      </p>
+      <p><b>After change:</b> how the app accepts each new value.</p>
+      <ul>
+        <li><i>Nothing</i>: for fields that update live as you type.</li>
+        <li><i>Press Enter</i>: careful, some dialogs treat Enter as OK.</li>
+        <li>
+          <i>Tab, then Shift+Tab</i>: commits by leaving the field, then comes
+          back. Usually right for CAD dialogs.
+        </li>
+      </ul>
+      <img
+        class="shot"
+        src="gallery-3.png"
+        alt="Step sizes and After change settings"
+      />
+
+      <h2>How it works</h2>
+      <p>
+        The plugin selects and copies the field's text (your clipboard is put
+        back right after), changes the last number in it, and types the new
+        value in. Text around the number is kept: <code>25 mm</code> →
+        <code>26 mm</code>, <code>50%</code> → <code>51%</code>. While you keep
+        turning it only sends keystrokes, and re-reads the field once you've
+        stopped for 1.5 s.
+      </p>
+      <img
+        class="shot"
+        src="gallery-1.png"
+        alt="Examples of fields with units"
+      />
+
+      <h2>Limits</h2>
+      <ul>
+        <li>
+          Clipboard restore keeps text only: an image on the clipboard is lost
+          when the field is read.
+        </li>
+        <li>Needs Stream Deck 7.1+ on Windows 10+ or macOS 12+.</li>
+      </ul>
+    </main>
+  </body>
+</html>
